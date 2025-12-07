@@ -1,0 +1,10 @@
+.header {
+	display: flex;
+	padding: 1em;
+
+	background-color: gray;
+
+	border: 0px;
+	border-bottom: 4px;
+	border-style: solid;
+}
