@@ -1,0 +1,55 @@
+# --------------------
+# VISUAL STUDIO / C# (.NET) IGNORE
+# --------------------
+
+# Temporary folders
+[Bb]in/
+[Oo]bj/
+.vs/
+.idea/
+*.user
+*.suo
+*.sln.docstates
+
+# Compiled files
+*.exe
+*.dll
+*.pdb
+*.obj
+*.lib
+*.map
+*.bak
+*.ncb
+*.sbr
+*.bsc
+*.log
+*.tmp
+*.vspscc
+*.vssscc
+*.vshost.*
+*.testsettings
+*.trx
+*.cache
+
+# NuGet packages and tool folders
+packages/
+*.nupkg
+.nuget/
+.tools/
+
+# User-specific files
+*.user
+*.userprefs
+*.ide
+*.Designer.cs.bak
+*.Designer.vb.bak
+
+# ASP.NET Core specific files
+appsettings.Development.json # Often contains sensitive local configuration
+Properties/launchSettings.json # Local debug ports and settings
+
+# Log files and database files
+*.log
+*.sqlite
+*.mdf
+*.ldf

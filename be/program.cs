@@ -2,38 +2,50 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Backend.Models; // Required if you reference models directly here
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add CORS services to allow React to connect
+// --- 1. SERVICE CONFIGURATION ---
+builder.Services.AddControllers();
+
+// Configure Swagger for API documentation and testing
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Configure CORS to allow React frontend connection (e.g., ports 3000 and 5173)
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        // Must include the port your React app runs on (e.g., 5173 or 3000)
         policy.WithOrigins("http://localhost:5173", "http://localhost:3000") 
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
-builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// --- 2. PIPELINE CONFIGURATION ---
+
+// Enable Swagger UI only in Development environment
 if (app.Environment.IsDevelopment())
 {
-    // Optionally remove swagger/swaggerUI lines if you don't use them
+    // These lines make Swagger available at http://localhost:5053/swagger/index.html
+    app.UseSwagger();      
+    app.UseSwaggerUI();    
 }
 
-app.UseHttpsRedirection();
+// Comment out HttpsRedirection to prevent the "Failed to determine the https port" warning
+// when running on HTTP (http://localhost:5053)
+// app.UseHttpsRedirection(); 
 
-// IMPORTANT: Use the configured CORS policy before MapControllers
+// Use CORS before Authorization
 app.UseCors();
 
 app.UseAuthorization();
 
-app.MapControllers(); // Maps the routes defined in MissionController
+app.MapControllers(); 
 
 app.Run();
