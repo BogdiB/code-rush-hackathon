@@ -1,8 +1,8 @@
-import { useAppStore } from "../../state/store";
+import { usePageStore } from "../../state/pages_store";
 import "./main-page.css";
 
 export function MainPage() {
-	const goToRecipe = useAppStore((state) => state.set);
+	const goToRecipe = usePageStore((state) => state.set);
 
 	return (
 		<div className="wrapper">
