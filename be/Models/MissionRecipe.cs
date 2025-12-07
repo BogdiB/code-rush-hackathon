@@ -18,4 +18,4 @@ namespace Backend.Models
         public string Status { get; set; } = "ACTIV";
         public string Warning { get; set; } = "Acest fișier se va autodistruge în 5... 4... 3... 2...";
     }
-}   
+}

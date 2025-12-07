@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] // Sets the base route to /api/Mission
+    [Route("api/[controller]")] // Base route: /api/Mission
     public class MissionController : ControllerBase
     {
         // Static list containing all 5 missions/recipes
@@ -145,7 +145,7 @@ namespace Backend.Controllers
             }
         };
 
-        [HttpGet("random")] // The endpoint the React app will call: /api/Mission/random
+        [HttpGet("random")] // The final endpoint: /api/Mission/random
         public ActionResult<MissionRecipe> GetRandomMission()
         {
             if (AllMissions == null || AllMissions.Count == 0)
@@ -153,7 +153,6 @@ namespace Backend.Controllers
                 return NotFound("Nu au fost găsite misiuni.");
             }
 
-            // Logic to select a random mission
             var random = new Random();
             int index = random.Next(AllMissions.Count); 
 
